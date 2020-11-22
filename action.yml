@@ -1,0 +1,20 @@
+name: 'Bash shell beautifier'
+description: 'Run beautysh to beautify a bash shell scripts code.'
+author: 'illvart'
+
+branding:
+  icon: 'code'  
+  color: 'green'
+
+inputs:
+  args:
+    description: 'Arguments provided to beautysh'
+    required: false
+    default: '*.sh'
+    
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.args }}
+    
