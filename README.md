@@ -3,7 +3,7 @@
 **A GitHub Action for [beautysh](https://github.com/lovesegfault/beautysh)**
 
 [![Release](https://img.shields.io/github/v/release/illvart/beautysh-action)](https://github.com/illvart/beautysh-action/releases)
-[![LICENSE](https://img.shields.io/github/license/illvart/beautysh-action)](https://github.com/illvart/beautysh-action/blob/main/LICENSE)
+[![LICENSE](https://img.shields.io/github/license/illvart/beautysh-action)](LICENSE)
 
 ## Usage
 
