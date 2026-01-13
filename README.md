@@ -1,14 +1,13 @@
-# Bash shell beautifier
+# beautysh-action
 
-[![Release](https://img.shields.io/github/v/release/illvart/beautysh-action?color=orange)](https://github.com/illvart/beautysh-action/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/illvart/beautysh-action/blob/main/LICENSE)
-[![Marketplace](https://img.shields.io/badge/GitHub-Marketplace-blue.svg)](https://github.com/marketplace/actions/bash-shell-beautifier)
+**A GitHub Action for [beautysh](https://github.com/lovesegfault/beautysh)**
 
-A GitHub Action that runs [beautysh](https://github.com/lovesegfault/beautysh) for beautify a bash shell scripts code.
+[![Release](https://img.shields.io/github/v/release/illvart/beautysh-action)](https://github.com/illvart/beautysh-action/releases)
+[![LICENSE](https://img.shields.io/github/license/illvart/beautysh-action)](https://github.com/illvart/beautysh-action/blob/main/LICENSE)
 
 ## Usage
 
-To use this action in your repository, create a file like `.github/workflows/ci.yml` with the following example:
+To use this action in your repository, simply create a workflow file (for example `.github/workflows/ci.yml`) with content like this:
 
 ```yaml
 name: CI
@@ -17,15 +16,18 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
       
 jobs:
   beautify:
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: write
+    
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.head_ref }}
           
@@ -36,16 +38,29 @@ jobs:
           args: '*.sh --indent-size 4'
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: '[auto] ci: apply beautysh changes'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: 'ci: apply auto-fixes'
+          commit_options: '--no-verify'
+          commit_user_name: ${{ github.repository_owner }}
+          commit_user_email: ${{ github.repository_owner }}@users.noreply.github.com
           
 ```
 
-If there is no `args` option it will fallback into `*.sh`.
+If the `args` option is not provided, it defaults to `*.sh`.
 
-To avoid errors when project directory doesn't have an `*.sh` file, you can pass it with `&>/dev/null`.
+To avoid errors when the project directory lacks an `*.sh` file, use `&>/dev/null`.
 
-For a full list of possible `args` checkout the [beautysh docs](https://github.com/lovesegfault/beautysh#usage).
+For a full list of `args`, check the [beautysh docs](https://github.com/lovesegfault/beautysh#usage).
+
+## Supports
+
+If you’re enjoying it or want to support development, feel free to donate. Thank you! ❤️
+
+## Contributing
+
+Want to contribute? Read the [Contributing](docs/CONTRIBUTING.md).
+
+## License
+
+Released under the [MIT License](LICENSE).

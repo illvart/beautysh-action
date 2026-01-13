@@ -1,9 +1,9 @@
 name: 'Bash shell beautifier'
-description: 'Run beautysh to beautify a bash shell scripts code.'
+description: 'A GitHub Action for beautysh'
 author: 'illvart'
 
 branding:
-  icon: 'code'  
+  icon: 'code'
   color: 'green'
 
 inputs:
@@ -17,4 +17,3 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.args }}
-    
